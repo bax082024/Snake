@@ -11,6 +11,8 @@ namespace Snake
         private List<Point> snake = new List<Point>();
         private Point food = Point.Empty;
         private int score = 0;
+        private int level = 1;
+
         private Direction direction = Direction.Right;
 
         private enum Direction { Up, Down, Left, Right }

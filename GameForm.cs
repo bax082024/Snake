@@ -129,24 +129,30 @@ namespace Snake
         }
 
 
-        private void GameForm_KeyDown(object sender, KeyEventArgs e)
+        private void Form1_KeyDown(object? sender, KeyEventArgs e)
         {
-            switch (e.KeyCode)
-            {
-                case Keys.Up:
-                    if (direction != Direction.Down) direction = Direction.Up;
-                    break;
-                case Keys.Down:
-                    if (direction != Direction.Up) direction = Direction.Down;
-                    break;
-                case Keys.Left:
-                    if (direction != Direction.Right) direction = Direction.Left;
-                    break;
-                case Keys.Right:
-                    if (direction != Direction.Left) direction = Direction.Right;
-                    break;
-            }
+            if (e.KeyCode == Keys.Left)
+                moveLeft = true;
+            else if (e.KeyCode == Keys.Right)
+                moveRight = true;
+            else if (e.KeyCode == Keys.Up)
+                moveUp = true;
+            else if (e.KeyCode == Keys.Down)
+                moveDown = true;
         }
+
+        private void Form1_KeyUp(object? sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Left)
+                moveLeft = false;
+            else if (e.KeyCode == Keys.Right)
+                moveRight = false;
+            else if (e.KeyCode == Keys.Up)
+                moveUp = false;
+            else if (e.KeyCode == Keys.Down)
+                moveDown = false;
+        }
+
 
 
 

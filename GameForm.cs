@@ -44,6 +44,7 @@ namespace Snake
 
             GenerateFood();
             score = 0;
+            level = 1;
 
             direction = Direction.Right; // Initialize direction
 

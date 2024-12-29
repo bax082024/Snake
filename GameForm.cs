@@ -136,7 +136,16 @@ namespace Snake
 
         private void btnPause_Click(object sender, EventArgs e)
         {
-
+            if (gameTimer.Enabled)
+            {
+                gameTimer.Stop(); // Pause the game
+                btnPause.Text = "Resume";
+            }
+            else
+            {
+                gameTimer.Start(); // Resume the game
+                btnPause.Text = "Pause";
+            }
         }
 
         private void buttonExit_Click(object sender, EventArgs e)

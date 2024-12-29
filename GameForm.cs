@@ -63,5 +63,49 @@ namespace Snake
             g.DrawString($"Score: {score}", new Font("Arial", 14), Brushes.Black, 10, 10);
         }
 
+        private void gameTimer_Tick(object sender, EventArgs e)
+        {
+            // Move the snake
+            Point head = snake[0];
+            Point newHead = head;
+
+            switch (direction)
+            {
+                case Direction.Up: newHead.Y--; break;
+                case Direction.Down: newHead.Y++; break;
+                case Direction.Left: newHead.X--; break;
+                case Direction.Right: newHead.X++; break;
+            }
+
+            // Check for collisions
+            if (newHead.X < 0 || newHead.Y < 0 || newHead.X >= 30 || newHead.Y >= 20 || snake.Contains(newHead))
+            {
+                GameOver();
+                return;
+            }
+
+            snake.Insert(0, newHead); // Add new head to the front
+
+            // Check if snake ate the food
+            if (newHead == food)
+            {
+                score++;
+                GenerateFood();
+            }
+            else
+            {
+                snake.RemoveAt(snake.Count - 1); // Remove the tail
+            }
+
+            this.Invalidate(); // Refresh the form
+        }
+
+
+
+
+
+
+
+
     }
 }

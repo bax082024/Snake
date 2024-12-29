@@ -38,7 +38,7 @@ namespace Snake
             score = 0;
 
             gameTimer.Start();
-            this.Paint += playBox_Paint;
+            playBox.Paint += playBox_Paint;
             this.KeyDown += GameForm_KeyDown;
 
 

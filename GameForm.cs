@@ -100,6 +100,13 @@ namespace Snake
             this.Invalidate(); // Refresh the form
         }
 
+        private void GameOver()
+        {
+            gameTimer.Stop();
+            MessageBox.Show($"Game Over! Your score: {score}", "Snake Game");
+            InitializeGame(); // Restart the game
+        }
+
 
 
 

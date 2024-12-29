@@ -23,3 +23,9 @@ C:\HjemmeKode\C-Sharp\MyProjects\Snake\bin\Debug\net8.0-windows\Images\5.png
 C:\HjemmeKode\C-Sharp\MyProjects\Snake\bin\Debug\net8.0-windows\Images\snakehead.png
 C:\HjemmeKode\C-Sharp\MyProjects\Snake\obj\Debug\net8.0-windows\Snake.Properties.Resources.resources
 C:\HjemmeKode\C-Sharp\MyProjects\Snake\bin\Debug\net8.0-windows\Images\apple.png
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\bin\Debug\net8.0-windows\Sounds\apple.mp3
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\bin\Debug\net8.0-windows\Sounds\gamemusic.mp3
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\bin\Debug\net8.0-windows\Sounds\gameover.mp3
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\bin\Debug\net8.0-windows\Sounds\startbutton.mp3
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\obj\Debug\net8.0-windows\Interop.WMPLib.dll
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\obj\Debug\net8.0-windows\Snake.csproj.ResolveComReference.cache

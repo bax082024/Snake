@@ -3,21 +3,49 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using WMPLib;
+
 
 namespace Snake
 {
+
+
+
+
     public partial class Form1 : Form
     {
         private List<Point> snake = new List<Point>();
         private Point food = Point.Empty;
         private int score = 0;
+        private int level = 1;
+
         private Direction direction = Direction.Right;
 
         private enum Direction { Up, Down, Left, Right }
 
+        private WindowsMediaPlayer gameMusicPlayer;
+        private WindowsMediaPlayer appleSoundPlayer;
+        private WindowsMediaPlayer gameOverSoundPlayer;
+        private WindowsMediaPlayer startButtonSoundPlayer;
+
+
+
+
         public Form1()
         {
             InitializeComponent();
+
+            gameMusicPlayer = new WindowsMediaPlayer();
+            appleSoundPlayer = new WindowsMediaPlayer();
+            gameOverSoundPlayer = new WindowsMediaPlayer();
+            startButtonSoundPlayer = new WindowsMediaPlayer();
+
+            gameMusicPlayer.URL = @"Sounds\gamemusic.mp3";
+            appleSoundPlayer.URL = @"Sounds\apple.mp3";
+            gameOverSoundPlayer.URL = @"Sounds\gameover.mp3";
+            startButtonSoundPlayer.URL = @"Sounds\startbutton.mp3";
+
+            gameMusicPlayer.settings.setMode("loop", true);
 
             // Initialize Timer
             gameTimer = new System.Windows.Forms.Timer();
@@ -42,10 +70,14 @@ namespace Snake
 
             GenerateFood();
             score = 0;
+            level = 1;
+
+            gameTimer.Interval = 150;
 
             direction = Direction.Right; // Initialize direction
 
             lblScore.Text = $"Score: {score}";
+            lblLevel.Text = $"Level: {level}";
             playBox.Invalidate(); // Refresh the playBox
         }
 
@@ -104,7 +136,22 @@ namespace Snake
             {
                 score++;
                 lblScore.Text = $"Score: {score}";
+                appleSoundPlayer.controls.play();
                 GenerateFood();
+
+                // Increase level every 10 apples
+                if (score % 10 == 0)
+                {
+                    level++;
+                    lblLevel.Text = $"Level: {level}";
+
+                    // Increase speed by reducing interval (minimum of 50 ms)
+                    if (gameTimer.Interval > 50)
+                    {
+                        gameTimer.Interval -= 10;
+                        Console.WriteLine($"Level Up! New Speed: {gameTimer.Interval} ms");
+                    }
+                }
             }
             else
             {
@@ -117,7 +164,10 @@ namespace Snake
         private void GameOver()
         {
             gameTimer.Stop();
-            MessageBox.Show($"Game Over! Your score: {score}", "Snake Game");
+            gameMusicPlayer.controls.stop(); // Stop background music
+            gameOverSoundPlayer.controls.play();
+
+            MessageBox.Show($"Game Over! Your score: {score} Level: {level}", "Snake Game");
             InitializeGame(); // Restart the game
         }
 
@@ -167,9 +217,12 @@ namespace Snake
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            startButtonSoundPlayer.controls.play();
+
             this.Focus(); // Ensure the form has focus
             if (!gameTimer.Enabled)
             {
+                gameMusicPlayer.controls.play();
                 gameTimer.Start();
             }
         }
@@ -191,6 +244,10 @@ namespace Snake
         private void buttonExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+            gameMusicPlayer.controls.stop();
+            appleSoundPlayer.controls.stop();
+            gameOverSoundPlayer.controls.stop();
+            startButtonSoundPlayer.controls.stop();
         }
 
         protected override void OnPaintBackground(PaintEventArgs e)

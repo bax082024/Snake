@@ -46,9 +46,12 @@ namespace Snake
             score = 0;
             level = 1;
 
+            gameTimer.Interval = 150;
+
             direction = Direction.Right; // Initialize direction
 
             lblScore.Text = $"Score: {score}";
+            lblLevel.Text = $"Level: {level}";
             playBox.Invalidate(); // Refresh the playBox
         }
 

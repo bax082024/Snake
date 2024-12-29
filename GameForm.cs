@@ -107,6 +107,25 @@ namespace Snake
             InitializeGame(); // Restart the game
         }
 
+        private void GameForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Up:
+                    if (direction != Direction.Down) direction = Direction.Up;
+                    break;
+                case Keys.Down:
+                    if (direction != Direction.Up) direction = Direction.Down;
+                    break;
+                case Keys.Left:
+                    if (direction != Direction.Right) direction = Direction.Left;
+                    break;
+                case Keys.Right:
+                    if (direction != Direction.Left) direction = Direction.Right;
+                    break;
+            }
+        }
+
 
 
 

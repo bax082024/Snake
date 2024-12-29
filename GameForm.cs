@@ -217,6 +217,8 @@ namespace Snake
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            startButtonSoundPlayer.controls.play();
+
             this.Focus(); // Ensure the form has focus
             if (!gameTimer.Enabled)
             {

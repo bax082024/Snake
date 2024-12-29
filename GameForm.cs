@@ -128,13 +128,20 @@ namespace Snake
             }
         }
 
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            InitializeGame();
+            gameTimer.Start();
+        }
 
+        private void btnPause_Click(object sender, EventArgs e)
+        {
 
+        }
 
+        private void buttonExit_Click(object sender, EventArgs e)
+        {
 
-
-
-
-
+        }
     }
 }

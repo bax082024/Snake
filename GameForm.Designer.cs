@@ -68,7 +68,7 @@
             btnPause.TabIndex = 6;
             btnPause.Text = "PAUSE";
             btnPause.UseVisualStyleBackColor = true;
-            btnPause.Click += this.btnPause_Click;
+            btnPause.Click += btnPause_Click;
             // 
             // lblScore
             // 
@@ -101,7 +101,7 @@
             buttonExit.TabIndex = 3;
             buttonExit.Text = "Exit";
             buttonExit.UseVisualStyleBackColor = true;
-            buttonExit.Click += this.buttonExit_Click;
+            buttonExit.Click += buttonExit_Click;
             // 
             // btnStart
             // 
@@ -112,7 +112,7 @@
             btnStart.TabIndex = 2;
             btnStart.Text = "START";
             btnStart.UseVisualStyleBackColor = true;
-            btnStart.Click += this.btnStart_Click;
+            btnStart.Click += btnStart_Click;
             // 
             // playBox
             // 

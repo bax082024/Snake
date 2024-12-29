@@ -35,6 +35,13 @@ namespace Snake
         {
             InitializeComponent();
 
+            gameMusicPlayer = new WindowsMediaPlayer();
+            appleSoundPlayer = new WindowsMediaPlayer();
+            gameOverSoundPlayer = new WindowsMediaPlayer();
+            startButtonSoundPlayer = new WindowsMediaPlayer();
+
+
+
             // Initialize Timer
             gameTimer = new System.Windows.Forms.Timer();
             gameTimer.Interval = 150; // Slower starting speed

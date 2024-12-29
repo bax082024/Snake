@@ -244,6 +244,10 @@ namespace Snake
         private void buttonExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+            gameMusicPlayer.controls.stop();
+            appleSoundPlayer.controls.stop();
+            gameOverSoundPlayer.controls.stop();
+            startButtonSoundPlayer.controls.stop();
         }
 
         protected override void OnPaintBackground(PaintEventArgs e)

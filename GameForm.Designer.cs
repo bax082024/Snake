@@ -39,6 +39,7 @@
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             gameTimer = new System.Windows.Forms.Timer(components);
+            lblLevel = new Label();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -46,6 +47,7 @@
             // panel1
             // 
             panel1.BackColor = Color.Transparent;
+            panel1.Controls.Add(lblLevel);
             panel1.Controls.Add(btnPause);
             panel1.Controls.Add(lblScore);
             panel1.Controls.Add(label1);
@@ -75,7 +77,7 @@
             lblScore.Anchor = AnchorStyles.None;
             lblScore.AutoSize = true;
             lblScore.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblScore.Location = new Point(31, 46);
+            lblScore.Location = new Point(77, 46);
             lblScore.Name = "lblScore";
             lblScore.Size = new Size(73, 21);
             lblScore.TabIndex = 5;
@@ -139,6 +141,17 @@
             toolStripStatusLabel1.Size = new Size(74, 17);
             toolStripStatusLabel1.Text = "Bax Creation";
             // 
+            // lblLevel
+            // 
+            lblLevel.Anchor = AnchorStyles.None;
+            lblLevel.AutoSize = true;
+            lblLevel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblLevel.Location = new Point(711, 46);
+            lblLevel.Name = "lblLevel";
+            lblLevel.Size = new Size(71, 21);
+            lblLevel.TabIndex = 7;
+            lblLevel.Text = "Level : 1";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -167,5 +180,6 @@
         private Label lblScore;
         private Label label1;
         private Button btnPause;
+        private Label lblLevel;
     }
 }

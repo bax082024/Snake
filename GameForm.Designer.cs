@@ -30,15 +30,15 @@
         {
             components = new System.ComponentModel.Container();
             panel1 = new Panel();
+            btnPause = new Button();
+            lblScore = new Label();
+            label1 = new Label();
+            buttonExit = new Button();
+            btnStart = new Button();
+            playBox = new Panel();
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             gameTimer = new System.Windows.Forms.Timer(components);
-            playBox = new Panel();
-            btnStart = new Button();
-            buttonExit = new Button();
-            label1 = new Label();
-            lblScore = new Label();
-            btnPause = new Button();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -59,6 +59,71 @@
             panel1.Size = new Size(861, 690);
             panel1.TabIndex = 0;
             // 
+            // btnPause
+            // 
+            btnPause.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnPause.Location = new Point(434, 581);
+            btnPause.Name = "btnPause";
+            btnPause.Size = new Size(116, 46);
+            btnPause.TabIndex = 6;
+            btnPause.Text = "PAUSE";
+            btnPause.UseVisualStyleBackColor = true;
+            btnPause.Click += this.btnPause_Click;
+            // 
+            // lblScore
+            // 
+            lblScore.Anchor = AnchorStyles.None;
+            lblScore.AutoSize = true;
+            lblScore.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblScore.Location = new Point(31, 46);
+            lblScore.Name = "lblScore";
+            lblScore.Size = new Size(73, 21);
+            lblScore.TabIndex = 5;
+            lblScore.Text = "Score : 0";
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.None;
+            label1.AutoSize = true;
+            label1.Font = new Font("OCR A Extended", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(286, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(292, 50);
+            label1.TabIndex = 4;
+            label1.Text = "Bax Snake";
+            // 
+            // buttonExit
+            // 
+            buttonExit.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            buttonExit.Location = new Point(768, 610);
+            buttonExit.Name = "buttonExit";
+            buttonExit.Size = new Size(70, 29);
+            buttonExit.TabIndex = 3;
+            buttonExit.Text = "Exit";
+            buttonExit.UseVisualStyleBackColor = true;
+            buttonExit.Click += this.buttonExit_Click;
+            // 
+            // btnStart
+            // 
+            btnStart.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnStart.Location = new Point(294, 581);
+            btnStart.Name = "btnStart";
+            btnStart.Size = new Size(116, 46);
+            btnStart.TabIndex = 2;
+            btnStart.Text = "START";
+            btnStart.UseVisualStyleBackColor = true;
+            btnStart.Click += this.btnStart_Click;
+            // 
+            // playBox
+            // 
+            playBox.Anchor = AnchorStyles.None;
+            playBox.BackColor = Color.Silver;
+            playBox.Location = new Point(31, 70);
+            playBox.Name = "playBox";
+            playBox.Size = new Size(796, 488);
+            playBox.TabIndex = 1;
+            playBox.Paint += playBox_Paint;
+            // 
             // statusStrip1
             // 
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
@@ -73,67 +138,6 @@
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             toolStripStatusLabel1.Size = new Size(74, 17);
             toolStripStatusLabel1.Text = "Bax Creation";
-            // 
-            // playBox
-            // 
-            playBox.Anchor = AnchorStyles.None;
-            playBox.BackColor = Color.Silver;
-            playBox.Location = new Point(31, 70);
-            playBox.Name = "playBox";
-            playBox.Size = new Size(796, 488);
-            playBox.TabIndex = 1;
-            // 
-            // btnStart
-            // 
-            btnStart.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnStart.Location = new Point(353, 582);
-            btnStart.Name = "btnStart";
-            btnStart.Size = new Size(116, 46);
-            btnStart.TabIndex = 2;
-            btnStart.Text = "START";
-            btnStart.UseVisualStyleBackColor = true;
-            // 
-            // buttonExit
-            // 
-            buttonExit.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            buttonExit.Location = new Point(768, 610);
-            buttonExit.Name = "buttonExit";
-            buttonExit.Size = new Size(70, 29);
-            buttonExit.TabIndex = 3;
-            buttonExit.Text = "Exit";
-            buttonExit.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            label1.Anchor = AnchorStyles.None;
-            label1.AutoSize = true;
-            label1.Font = new Font("OCR A Extended", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(286, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(292, 50);
-            label1.TabIndex = 4;
-            label1.Text = "Bax Snake";
-            // 
-            // lblScore
-            // 
-            lblScore.Anchor = AnchorStyles.None;
-            lblScore.AutoSize = true;
-            lblScore.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblScore.Location = new Point(31, 46);
-            lblScore.Name = "lblScore";
-            lblScore.Size = new Size(73, 21);
-            lblScore.TabIndex = 5;
-            lblScore.Text = "Score : 0";
-            // 
-            // btnPause
-            // 
-            btnPause.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPause.Location = new Point(493, 582);
-            btnPause.Name = "btnPause";
-            btnPause.Size = new Size(116, 46);
-            btnPause.TabIndex = 6;
-            btnPause.Text = "PAUSE";
-            btnPause.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

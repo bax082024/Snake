@@ -33,7 +33,7 @@ namespace Snake
             score = 0;
 
             gameTimer.Start();
-            this.Paint += GameForm_Paint;
+            this.Paint += playBox_Paint;
             this.KeyDown += GameForm_KeyDown;
 
 
@@ -45,7 +45,7 @@ namespace Snake
             food = new Point(random.Next(0, 30), random.Next(0, 20));
         }
 
-        private void GameForm_Paint(object sender, PaintEventArgs e)
+        private void playBox_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
             int cellSize = 20; // Size of each grid cell
@@ -55,23 +55,12 @@ namespace Snake
             {
                 g.FillRectangle(Brushes.Green, segment.X * cellSize, segment.Y * cellSize, cellSize, cellSize);
             }
-            for (int x = 0; x < this.ClientSize.Width; x += 20)
-            {
-                e.Graphics.DrawLine(Pens.LightGray, x, 0, x, this.ClientSize.Height);
-            }
-
-            for (int y = 0; y < this.ClientSize.Height; y += 20)
-            {
-                e.Graphics.DrawLine(Pens.LightGray, 0, y, this.ClientSize.Width, y);
-            }
-
-
 
             // Draw the food
             g.FillRectangle(Brushes.Red, food.X * cellSize, food.Y * cellSize, cellSize, cellSize);
 
-            // Draw the score
-            g.DrawString($"Score: {score}", new Font("Arial", 14), Brushes.Black, 10, 10);
+            // Draw the score on the form label
+            lblScore.Text = $"Score: {score}";
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)

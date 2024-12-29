@@ -21,5 +21,22 @@ namespace Snake
             InitializeComponent();
             InitializeGame();
         }
+
+        private void InitializeGame()
+        {
+            snake.Clear();
+            snake.Add(new Point(5, 5));
+            snake.Add(new Point(4, 5));
+            snake.Add(new Point(3, 5));
+
+            GenerateFood();
+            score = 0;
+
+            gameTimer.Start();
+            this.Paint += GameForm_Paint;
+            this.KeyDown += GameForm_KeyDown;
+
+
+        }
     }
 }

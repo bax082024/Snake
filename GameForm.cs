@@ -19,6 +19,11 @@ namespace Snake
         public Form1()
         {
             InitializeComponent();
+
+            gameTimer = new Timer();
+            gameTimer.Interval = 100;
+            gameTimer.Tick += gameTimer_Tick;
+
             InitializeGame();
         }
 
@@ -42,8 +47,12 @@ namespace Snake
         private void GenerateFood()
         {
             Random random = new Random();
-            food = new Point(random.Next(0, 30), random.Next(0, 20));
+            int gridWidth = playBox.Width / 20; // Number of columns
+            int gridHeight = playBox.Height / 20; // Number of rows
+
+            food = new Point(random.Next(0, gridWidth), random.Next(0, gridHeight));
         }
+
 
         private void playBox_Paint(object sender, PaintEventArgs e)
         {

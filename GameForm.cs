@@ -38,5 +38,11 @@ namespace Snake
 
 
         }
+
+        private void GenerateFood()
+        {
+            Random random = new Random();
+            food = new Point(random.Next(0, 30), random.Next(0, 20));
+        }
     }
 }

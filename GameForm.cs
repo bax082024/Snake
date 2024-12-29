@@ -137,7 +137,7 @@ namespace Snake
         private void GameOver()
         {
             gameTimer.Stop();
-            MessageBox.Show($"Game Over! Your score: {score}", "Snake Game");
+            MessageBox.Show($"Game Over! Your score: {score} Level: {level}", "Snake Game");
             InitializeGame(); // Restart the game
         }
 

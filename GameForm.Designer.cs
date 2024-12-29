@@ -30,6 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             panel1 = new Panel();
+            lblLevel = new Label();
             btnPause = new Button();
             lblScore = new Label();
             label1 = new Label();
@@ -39,7 +40,6 @@
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             gameTimer = new System.Windows.Forms.Timer(components);
-            lblLevel = new Label();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -60,6 +60,17 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(861, 690);
             panel1.TabIndex = 0;
+            // 
+            // lblLevel
+            // 
+            lblLevel.Anchor = AnchorStyles.None;
+            lblLevel.AutoSize = true;
+            lblLevel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblLevel.Location = new Point(711, 46);
+            lblLevel.Name = "lblLevel";
+            lblLevel.Size = new Size(71, 21);
+            lblLevel.TabIndex = 7;
+            lblLevel.Text = "Level : 1";
             // 
             // btnPause
             // 
@@ -87,10 +98,11 @@
             // 
             label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
-            label1.Font = new Font("OCR A Extended", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(286, 9);
+            label1.Font = new Font("OCR A Extended", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(0, 204, 0);
+            label1.Location = new Point(238, 0);
             label1.Name = "label1";
-            label1.Size = new Size(292, 50);
+            label1.Size = new Size(388, 66);
             label1.TabIndex = 4;
             label1.Text = "Bax Snake";
             // 
@@ -140,17 +152,6 @@
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             toolStripStatusLabel1.Size = new Size(74, 17);
             toolStripStatusLabel1.Text = "Bax Creation";
-            // 
-            // lblLevel
-            // 
-            lblLevel.Anchor = AnchorStyles.None;
-            lblLevel.AutoSize = true;
-            lblLevel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblLevel.Location = new Point(711, 46);
-            lblLevel.Name = "lblLevel";
-            lblLevel.Size = new Size(71, 21);
-            lblLevel.TabIndex = 7;
-            lblLevel.Text = "Level : 1";
             // 
             // Form1
             // 

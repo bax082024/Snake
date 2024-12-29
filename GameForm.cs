@@ -153,6 +153,30 @@ namespace Snake
                 moveDown = false;
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.Left:
+                    moveLeft = true;
+                    moveRight = moveUp = moveDown = false; // Only one direction at a time
+                    break;
+                case Keys.Right:
+                    moveRight = true;
+                    moveLeft = moveUp = moveDown = false;
+                    break;
+                case Keys.Up:
+                    moveUp = true;
+                    moveLeft = moveRight = moveDown = false;
+                    break;
+                case Keys.Down:
+                    moveDown = true;
+                    moveLeft = moveRight = moveUp = false;
+                    break;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
 
 
 

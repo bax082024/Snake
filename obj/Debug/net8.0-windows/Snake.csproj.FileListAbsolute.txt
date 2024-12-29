@@ -15,3 +15,11 @@ C:\HjemmeKode\C-Sharp\MyProjects\Snake\obj\Debug\net8.0-windows\refint\Snake.dll
 C:\HjemmeKode\C-Sharp\MyProjects\Snake\obj\Debug\net8.0-windows\Snake.pdb
 C:\HjemmeKode\C-Sharp\MyProjects\Snake\obj\Debug\net8.0-windows\Snake.genruntimeconfig.cache
 C:\HjemmeKode\C-Sharp\MyProjects\Snake\obj\Debug\net8.0-windows\ref\Snake.dll
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\bin\Debug\net8.0-windows\Images\1.png
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\bin\Debug\net8.0-windows\Images\2.png
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\bin\Debug\net8.0-windows\Images\3.png
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\bin\Debug\net8.0-windows\Images\4.png
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\bin\Debug\net8.0-windows\Images\5.png
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\bin\Debug\net8.0-windows\Images\snakehead.png
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\obj\Debug\net8.0-windows\Snake.Properties.Resources.resources
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\bin\Debug\net8.0-windows\Images\apple.png

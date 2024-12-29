@@ -34,8 +34,11 @@
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             gameTimer = new System.Windows.Forms.Timer(components);
             playBox = new Panel();
-            buttonStart = new Button();
+            btnStart = new Button();
             buttonExit = new Button();
+            label1 = new Label();
+            lblScore = new Label();
+            btnPause = new Button();
             panel1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -43,8 +46,11 @@
             // panel1
             // 
             panel1.BackColor = Color.Transparent;
+            panel1.Controls.Add(btnPause);
+            panel1.Controls.Add(lblScore);
+            panel1.Controls.Add(label1);
             panel1.Controls.Add(buttonExit);
-            panel1.Controls.Add(buttonStart);
+            panel1.Controls.Add(btnStart);
             panel1.Controls.Add(playBox);
             panel1.Controls.Add(statusStrip1);
             panel1.Dock = DockStyle.Fill;
@@ -77,15 +83,15 @@
             playBox.Size = new Size(796, 488);
             playBox.TabIndex = 1;
             // 
-            // buttonStart
+            // btnStart
             // 
-            buttonStart.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            buttonStart.Location = new Point(353, 582);
-            buttonStart.Name = "buttonStart";
-            buttonStart.Size = new Size(116, 46);
-            buttonStart.TabIndex = 2;
-            buttonStart.Text = "START";
-            buttonStart.UseVisualStyleBackColor = true;
+            btnStart.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnStart.Location = new Point(353, 582);
+            btnStart.Name = "btnStart";
+            btnStart.Size = new Size(116, 46);
+            btnStart.TabIndex = 2;
+            btnStart.Text = "START";
+            btnStart.UseVisualStyleBackColor = true;
             // 
             // buttonExit
             // 
@@ -96,6 +102,38 @@
             buttonExit.TabIndex = 3;
             buttonExit.Text = "Exit";
             buttonExit.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.None;
+            label1.AutoSize = true;
+            label1.Font = new Font("OCR A Extended", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(286, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(292, 50);
+            label1.TabIndex = 4;
+            label1.Text = "Bax Snake";
+            // 
+            // lblScore
+            // 
+            lblScore.Anchor = AnchorStyles.None;
+            lblScore.AutoSize = true;
+            lblScore.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblScore.Location = new Point(31, 46);
+            lblScore.Name = "lblScore";
+            lblScore.Size = new Size(73, 21);
+            lblScore.TabIndex = 5;
+            lblScore.Text = "Score : 0";
+            // 
+            // btnPause
+            // 
+            btnPause.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnPause.Location = new Point(493, 582);
+            btnPause.Name = "btnPause";
+            btnPause.Size = new Size(116, 46);
+            btnPause.TabIndex = 6;
+            btnPause.Text = "PAUSE";
+            btnPause.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -120,7 +158,10 @@
         private ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Timer gameTimer;
         private Panel playBox;
-        private Button buttonStart;
+        private Button btnStart;
         private Button buttonExit;
+        private Label lblScore;
+        private Label label1;
+        private Button btnPause;
     }
 }

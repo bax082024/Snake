@@ -84,6 +84,17 @@ namespace Snake
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+            // Change direction based on movement flags
+            if (moveLeft && direction != Direction.Right)
+                direction = Direction.Left;
+            else if (moveRight && direction != Direction.Left)
+                direction = Direction.Right;
+            else if (moveUp && direction != Direction.Down)
+                direction = Direction.Up;
+            else if (moveDown && direction != Direction.Up)
+                direction = Direction.Down;
+
+            // Existing movement logic
             Point head = snake[0];
             Point newHead = head;
 
@@ -95,6 +106,7 @@ namespace Snake
                 case Direction.Right: newHead.X++; break;
             }
 
+            // Check for collisions
             if (newHead.X < 0 || newHead.Y < 0 ||
                 newHead.X >= playBox.Width / 20 || newHead.Y >= playBox.Height / 20 ||
                 snake.Contains(newHead))
@@ -103,7 +115,7 @@ namespace Snake
                 return;
             }
 
-            snake.Insert(0, newHead);
+            snake.Insert(0, newHead); // Add the new head
 
             if (newHead == food)
             {
@@ -113,11 +125,12 @@ namespace Snake
             }
             else
             {
-                snake.RemoveAt(snake.Count - 1);
+                snake.RemoveAt(snake.Count - 1); // Remove the tail
             }
 
-            playBox.Invalidate(); // Refresh playBox
+            playBox.Invalidate(); // Refresh the playBox
         }
+
 
 
 

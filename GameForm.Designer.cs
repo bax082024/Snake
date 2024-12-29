@@ -66,6 +66,7 @@
             lblLevel.Anchor = AnchorStyles.None;
             lblLevel.AutoSize = true;
             lblLevel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblLevel.ForeColor = Color.LawnGreen;
             lblLevel.Location = new Point(711, 46);
             lblLevel.Name = "lblLevel";
             lblLevel.Size = new Size(71, 21);
@@ -88,6 +89,7 @@
             lblScore.Anchor = AnchorStyles.None;
             lblScore.AutoSize = true;
             lblScore.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblScore.ForeColor = Color.LawnGreen;
             lblScore.Location = new Point(77, 46);
             lblScore.Name = "lblScore";
             lblScore.Size = new Size(73, 21);

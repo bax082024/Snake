@@ -19,6 +19,7 @@ namespace Snake
         public Form1()
         {
             InitializeComponent();
+            InitializeGame();
         }
     }
 }

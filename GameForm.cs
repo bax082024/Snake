@@ -111,6 +111,20 @@ namespace Snake
                 score++;
                 lblScore.Text = $"Score: {score}";
                 GenerateFood();
+
+                // Increase level every 10 apples
+                if (score % 10 == 0)
+                {
+                    level++;
+                    lblLevel.Text = $"Level: {level}";
+
+                    // Increase speed by reducing interval (minimum of 50 ms)
+                    if (gameTimer.Interval > 50)
+                    {
+                        gameTimer.Interval -= 10;
+                        Console.WriteLine($"Level Up! New Speed: {gameTimer.Interval} ms");
+                    }
+                }
             }
             else
             {

@@ -44,5 +44,24 @@ namespace Snake
             Random random = new Random();
             food = new Point(random.Next(0, 30), random.Next(0, 20));
         }
+
+        private void GameForm_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            int cellSize = 20; // Size of each grid cell
+
+            // Draw the snake
+            foreach (Point segment in snake)
+            {
+                g.FillRectangle(Brushes.Green, segment.X * cellSize, segment.Y * cellSize, cellSize, cellSize);
+            }
+
+            // Draw the food
+            g.FillRectangle(Brushes.Red, food.X * cellSize, food.Y * cellSize, cellSize, cellSize);
+
+            // Draw the score
+            g.DrawString($"Score: {score}", new Font("Arial", 14), Brushes.Black, 10, 10);
+        }
+
     }
 }

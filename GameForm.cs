@@ -55,6 +55,17 @@ namespace Snake
             {
                 g.FillRectangle(Brushes.Green, segment.X * cellSize, segment.Y * cellSize, cellSize, cellSize);
             }
+            for (int x = 0; x < this.ClientSize.Width; x += 20)
+            {
+                e.Graphics.DrawLine(Pens.LightGray, x, 0, x, this.ClientSize.Height);
+            }
+
+            for (int y = 0; y < this.ClientSize.Height; y += 20)
+            {
+                e.Graphics.DrawLine(Pens.LightGray, 0, y, this.ClientSize.Width, y);
+            }
+
+
 
             // Draw the food
             g.FillRectangle(Brushes.Red, food.X * cellSize, food.Y * cellSize, cellSize, cellSize);
@@ -77,7 +88,7 @@ namespace Snake
                 case Direction.Right: newHead.X++; break;
             }
 
-            // Check for collisions
+            // Check for collisions (walls or self)
             if (newHead.X < 0 || newHead.Y < 0 || newHead.X >= 30 || newHead.Y >= 20 || snake.Contains(newHead))
             {
                 GameOver();
@@ -100,12 +111,14 @@ namespace Snake
             this.Invalidate(); // Refresh the form
         }
 
+
         private void GameOver()
         {
             gameTimer.Stop();
             MessageBox.Show($"Game Over! Your score: {score}", "Snake Game");
             InitializeGame(); // Restart the game
         }
+
 
         private void GameForm_KeyDown(object sender, KeyEventArgs e)
         {
@@ -125,6 +138,7 @@ namespace Snake
                     break;
             }
         }
+
 
 
 

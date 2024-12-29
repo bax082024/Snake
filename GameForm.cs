@@ -13,6 +13,8 @@ namespace Snake
         private int score = 0;
         private Direction direction = Direction.Right;
 
+
+
         private enum Direction { Up, Down, Left, Right }
 
 
@@ -20,7 +22,7 @@ namespace Snake
         {
             InitializeComponent();
 
-            gameTimer = new Timer();
+            gameTimer = new System.Windows.Forms.Timer();
             gameTimer.Interval = 100;
             gameTimer.Tick += gameTimer_Tick;
 
@@ -54,7 +56,7 @@ namespace Snake
         }
 
 
-        private void playBox_Paint(object sender, PaintEventArgs e)
+        private void playBox_Paint(object? sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
             int cellSize = 20; // Size of each grid cell
@@ -87,7 +89,9 @@ namespace Snake
             }
 
             // Check for collisions (walls or self)
-            if (newHead.X < 0 || newHead.Y < 0 || newHead.X >= 30 || newHead.Y >= 20 || snake.Contains(newHead))
+            if (newHead.X < 0 || newHead.Y < 0 ||
+                newHead.X >= playBox.Width / 20 || newHead.Y >= playBox.Height / 20 ||
+                snake.Contains(newHead))
             {
                 GameOver();
                 return;

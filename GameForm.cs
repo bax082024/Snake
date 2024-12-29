@@ -136,6 +136,7 @@ namespace Snake
             {
                 score++;
                 lblScore.Text = $"Score: {score}";
+                appleSoundPlayer.controls.play();
                 GenerateFood();
 
                 // Increase level every 10 apples
@@ -163,6 +164,9 @@ namespace Snake
         private void GameOver()
         {
             gameTimer.Stop();
+            gameMusicPlayer.controls.stop(); // Stop background music
+            gameOverSoundPlayer.controls.play();
+
             MessageBox.Show($"Game Over! Your score: {score} Level: {level}", "Snake Game");
             InitializeGame(); // Restart the game
         }
@@ -216,6 +220,7 @@ namespace Snake
             this.Focus(); // Ensure the form has focus
             if (!gameTimer.Enabled)
             {
+                gameMusicPlayer.controls.play();
                 gameTimer.Start();
             }
         }

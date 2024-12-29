@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using WMPLib;
+
 
 namespace Snake
 {
+
+
+
+
     public partial class Form1 : Form
     {
         private List<Point> snake = new List<Point>();
@@ -16,6 +22,14 @@ namespace Snake
         private Direction direction = Direction.Right;
 
         private enum Direction { Up, Down, Left, Right }
+
+        private WindowsMediaPlayer gameMusicPlayer;
+        private WindowsMediaPlayer appleSoundPlayer;
+        private WindowsMediaPlayer gameOverSoundPlayer;
+        private WindowsMediaPlayer startButtonSoundPlayer;
+
+
+
 
         public Form1()
         {

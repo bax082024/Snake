@@ -40,7 +40,12 @@ namespace Snake
             gameOverSoundPlayer = new WindowsMediaPlayer();
             startButtonSoundPlayer = new WindowsMediaPlayer();
 
+            gameMusicPlayer.URL = @"Sounds\gamemusic.mp3";
+            appleSoundPlayer.URL = @"Sounds\apple.mp3";
+            gameOverSoundPlayer.URL = @"Sounds\gameover.mp3";
+            startButtonSoundPlayer.URL = @"Sounds\startbutton.mp3";
 
+            gameMusicPlayer.settings.setMode("loop", true);
 
             // Initialize Timer
             gameTimer = new System.Windows.Forms.Timer();

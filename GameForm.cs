@@ -1,0 +1,223 @@
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
+
+
+namespace Snake
+{
+    public partial class Form1 : Form
+    {
+        private List<Point> snake = new List<Point>();
+        private Point food = Point.Empty;
+        private int score = 0;
+        private Direction direction = Direction.Right;
+
+        private bool moveLeft = false;
+        private bool moveRight = false;
+        private bool moveUp = false;
+        private bool moveDown = false;
+
+        private enum Direction { Up, Down, Left, Right }
+
+
+        public Form1()
+        {
+            
+
+
+            InitializeComponent();
+
+            gameTimer = new System.Windows.Forms.Timer();
+            gameTimer.Interval = 100;
+            gameTimer.Tick += gameTimer_Tick;
+
+            this.KeyPreview = true;
+
+            InitializeGame();
+        }
+
+        private void InitializeGame()
+        {
+            snake.Clear();
+            snake.Add(new Point(5, 5));
+            snake.Add(new Point(4, 5));
+            snake.Add(new Point(3, 5));
+
+            GenerateFood();
+            score = 0;
+
+            direction = Direction.Right; // Initialize direction
+
+            lblScore.Text = $"Score: {score}";
+            playBox.Invalidate(); // Refresh the playBox
+        }
+
+
+        private void GenerateFood()
+        {
+            Random random = new Random();
+            int gridWidth = playBox.Width / 20; // Number of columns
+            int gridHeight = playBox.Height / 20; // Number of rows
+
+            food = new Point(random.Next(0, gridWidth), random.Next(0, gridHeight));
+        }
+
+
+        private void playBox_Paint(object? sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            int cellSize = 20; // Size of each grid cell
+
+            // Draw the snake
+            foreach (Point segment in snake)
+            {
+                g.FillRectangle(Brushes.Green, segment.X * cellSize, segment.Y * cellSize, cellSize, cellSize);
+            }
+
+            // Draw the food
+            g.FillRectangle(Brushes.Red, food.X * cellSize, food.Y * cellSize, cellSize, cellSize);
+
+            // Draw the score on the form label
+            lblScore.Text = $"Score: {score}";
+        }
+
+        private void gameTimer_Tick(object sender, EventArgs e)
+        {
+            // Change direction based on movement flags
+            if (moveLeft && direction != Direction.Right)
+                direction = Direction.Left;
+            else if (moveRight && direction != Direction.Left)
+                direction = Direction.Right;
+            else if (moveUp && direction != Direction.Down)
+                direction = Direction.Up;
+            else if (moveDown && direction != Direction.Up)
+                direction = Direction.Down;
+
+            // Existing movement logic
+            Point head = snake[0];
+            Point newHead = head;
+
+            switch (direction)
+            {
+                case Direction.Up: newHead.Y--; break;
+                case Direction.Down: newHead.Y++; break;
+                case Direction.Left: newHead.X--; break;
+                case Direction.Right: newHead.X++; break;
+            }
+
+            // Check for collisions
+            if (newHead.X < 0 || newHead.Y < 0 ||
+                newHead.X >= playBox.Width / 20 || newHead.Y >= playBox.Height / 20 ||
+                snake.Contains(newHead))
+            {
+                GameOver();
+                return;
+            }
+
+            snake.Insert(0, newHead); // Add the new head
+
+            if (newHead == food)
+            {
+                score++;
+                lblScore.Text = $"Score: {score}";
+                GenerateFood();
+            }
+            else
+            {
+                snake.RemoveAt(snake.Count - 1); // Remove the tail
+            }
+
+            playBox.Invalidate(); // Refresh the playBox
+        }
+
+
+
+
+        private void GameOver()
+        {
+            gameTimer.Stop();
+            MessageBox.Show($"Game Over! Your score: {score}", "Snake Game");
+            InitializeGame(); // Restart the game
+        }
+
+
+        private void Form1_KeyDown(object? sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Left)
+                moveLeft = true;
+            else if (e.KeyCode == Keys.Right)
+                moveRight = true;
+            else if (e.KeyCode == Keys.Up)
+                moveUp = true;
+            else if (e.KeyCode == Keys.Down)
+                moveDown = true;
+        }
+
+        private void Form1_KeyUp(object? sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Left)
+                moveLeft = false;
+            else if (e.KeyCode == Keys.Right)
+                moveRight = false;
+            else if (e.KeyCode == Keys.Up)
+                moveUp = false;
+            else if (e.KeyCode == Keys.Down)
+                moveDown = false;
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.Left:
+                    moveLeft = true;
+                    moveRight = moveUp = moveDown = false; // Only one direction at a time
+                    break;
+                case Keys.Right:
+                    moveRight = true;
+                    moveLeft = moveUp = moveDown = false;
+                    break;
+                case Keys.Up:
+                    moveUp = true;
+                    moveLeft = moveRight = moveDown = false;
+                    break;
+                case Keys.Down:
+                    moveDown = true;
+                    moveLeft = moveRight = moveUp = false;
+                    break;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+
+
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            if (!gameTimer.Enabled) // Only start if the game is not running
+            {
+                gameTimer.Start();
+            }
+        }
+
+        private void btnPause_Click(object sender, EventArgs e)
+        {
+            if (gameTimer.Enabled)
+            {
+                gameTimer.Stop(); // Pause the game
+                btnPause.Text = "Resume";
+            }
+            else
+            {
+                gameTimer.Start(); // Resume the game
+                btnPause.Text = "Pause";
+            }
+        }
+
+        private void buttonExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+    }
+}

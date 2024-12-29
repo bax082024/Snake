@@ -1,0 +1,17 @@
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\obj\Debug\net8.0-windows\Snake.Form1.resources
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\obj\Debug\net8.0-windows\Snake.csproj.GenerateResource.cache
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\obj\Debug\net8.0-windows\Snake.GeneratedMSBuildEditorConfig.editorconfig
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\obj\Debug\net8.0-windows\Snake.AssemblyInfoInputs.cache
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\obj\Debug\net8.0-windows\Snake.AssemblyInfo.cs
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\obj\Debug\net8.0-windows\Snake.csproj.CoreCompileInputs.cache
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\obj\Debug\net8.0-windows\Snake.sourcelink.json
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\bin\Debug\net8.0-windows\Snake.exe
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\bin\Debug\net8.0-windows\Snake.deps.json
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\bin\Debug\net8.0-windows\Snake.runtimeconfig.json
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\bin\Debug\net8.0-windows\Snake.dll
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\bin\Debug\net8.0-windows\Snake.pdb
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\obj\Debug\net8.0-windows\Snake.dll
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\obj\Debug\net8.0-windows\refint\Snake.dll
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\obj\Debug\net8.0-windows\Snake.pdb
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\obj\Debug\net8.0-windows\Snake.genruntimeconfig.cache
+C:\HjemmeKode\C-Sharp\MyProjects\Snake\obj\Debug\net8.0-windows\ref\Snake.dll

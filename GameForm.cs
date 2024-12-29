@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-
 namespace Snake
 {
     public partial class Form1 : Form
@@ -13,25 +12,21 @@ namespace Snake
         private int score = 0;
         private Direction direction = Direction.Right;
 
-        private bool moveLeft = false;
-        private bool moveRight = false;
-        private bool moveUp = false;
-        private bool moveDown = false;
-
         private enum Direction { Up, Down, Left, Right }
-
 
         public Form1()
         {
-            
-
-
             InitializeComponent();
 
+            // Initialize Timer
             gameTimer = new System.Windows.Forms.Timer();
-            gameTimer.Interval = 100;
+            gameTimer.Interval = 150; // Slower starting speed
             gameTimer.Tick += gameTimer_Tick;
 
+            // Attach KeyDown
+            this.KeyDown += Form1_KeyDown;
+
+            // Enable KeyPreview
             this.KeyPreview = true;
 
             InitializeGame();
@@ -53,7 +48,6 @@ namespace Snake
             playBox.Invalidate(); // Refresh the playBox
         }
 
-
         private void GenerateFood()
         {
             Random random = new Random();
@@ -63,11 +57,10 @@ namespace Snake
             food = new Point(random.Next(0, gridWidth), random.Next(0, gridHeight));
         }
 
-
         private void playBox_Paint(object? sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            int cellSize = 20; // Size of each grid cell
+            int cellSize = 20;
 
             // Draw the snake
             foreach (Point segment in snake)
@@ -78,26 +71,15 @@ namespace Snake
             // Draw the food
             g.FillRectangle(Brushes.Red, food.X * cellSize, food.Y * cellSize, cellSize, cellSize);
 
-            // Draw the score on the form label
             lblScore.Text = $"Score: {score}";
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            // Change direction based on movement flags
-            if (moveLeft && direction != Direction.Right)
-                direction = Direction.Left;
-            else if (moveRight && direction != Direction.Left)
-                direction = Direction.Right;
-            else if (moveUp && direction != Direction.Down)
-                direction = Direction.Up;
-            else if (moveDown && direction != Direction.Up)
-                direction = Direction.Down;
-
-            // Existing movement logic
             Point head = snake[0];
             Point newHead = head;
 
+            // Move the snake based on the current direction
             switch (direction)
             {
                 case Direction.Up: newHead.Y--; break;
@@ -106,7 +88,7 @@ namespace Snake
                 case Direction.Right: newHead.X++; break;
             }
 
-            // Check for collisions
+            // Collision detection
             if (newHead.X < 0 || newHead.Y < 0 ||
                 newHead.X >= playBox.Width / 20 || newHead.Y >= playBox.Height / 20 ||
                 snake.Contains(newHead))
@@ -115,7 +97,7 @@ namespace Snake
                 return;
             }
 
-            snake.Insert(0, newHead); // Add the new head
+            snake.Insert(0, newHead);
 
             if (newHead == food)
             {
@@ -128,11 +110,8 @@ namespace Snake
                 snake.RemoveAt(snake.Count - 1); // Remove the tail
             }
 
-            playBox.Invalidate(); // Refresh the playBox
+            playBox.Invalidate(); // Refresh playBox
         }
-
-
-
 
         private void GameOver()
         {
@@ -141,29 +120,25 @@ namespace Snake
             InitializeGame(); // Restart the game
         }
 
-
         private void Form1_KeyDown(object? sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Left)
-                moveLeft = true;
-            else if (e.KeyCode == Keys.Right)
-                moveRight = true;
-            else if (e.KeyCode == Keys.Up)
-                moveUp = true;
-            else if (e.KeyCode == Keys.Down)
-                moveDown = true;
-        }
+            Console.WriteLine($"Key Pressed: {e.KeyCode}"); // Debug message
 
-        private void Form1_KeyUp(object? sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Left)
-                moveLeft = false;
-            else if (e.KeyCode == Keys.Right)
-                moveRight = false;
-            else if (e.KeyCode == Keys.Up)
-                moveUp = false;
-            else if (e.KeyCode == Keys.Down)
-                moveDown = false;
+            switch (e.KeyCode)
+            {
+                case Keys.Left:
+                    if (direction != Direction.Right) direction = Direction.Left;
+                    break;
+                case Keys.Right:
+                    if (direction != Direction.Left) direction = Direction.Right;
+                    break;
+                case Keys.Up:
+                    if (direction != Direction.Down) direction = Direction.Up;
+                    break;
+                case Keys.Down:
+                    if (direction != Direction.Up) direction = Direction.Down;
+                    break;
+            }
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -171,20 +146,16 @@ namespace Snake
             switch (keyData)
             {
                 case Keys.Left:
-                    moveLeft = true;
-                    moveRight = moveUp = moveDown = false; // Only one direction at a time
+                    if (direction != Direction.Right) direction = Direction.Left;
                     break;
                 case Keys.Right:
-                    moveRight = true;
-                    moveLeft = moveUp = moveDown = false;
+                    if (direction != Direction.Left) direction = Direction.Right;
                     break;
                 case Keys.Up:
-                    moveUp = true;
-                    moveLeft = moveRight = moveDown = false;
+                    if (direction != Direction.Down) direction = Direction.Up;
                     break;
                 case Keys.Down:
-                    moveDown = true;
-                    moveLeft = moveRight = moveUp = false;
+                    if (direction != Direction.Up) direction = Direction.Down;
                     break;
             }
             return base.ProcessCmdKey(ref msg, keyData);
@@ -195,7 +166,8 @@ namespace Snake
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            if (!gameTimer.Enabled) // Only start if the game is not running
+            this.Focus(); // Ensure the form has focus
+            if (!gameTimer.Enabled)
             {
                 gameTimer.Start();
             }
@@ -205,12 +177,12 @@ namespace Snake
         {
             if (gameTimer.Enabled)
             {
-                gameTimer.Stop(); // Pause the game
+                gameTimer.Stop();
                 btnPause.Text = "Resume";
             }
             else
             {
-                gameTimer.Start(); // Resume the game
+                gameTimer.Start();
                 btnPause.Text = "Pause";
             }
         }

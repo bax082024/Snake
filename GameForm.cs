@@ -13,18 +13,26 @@ namespace Snake
         private int score = 0;
         private Direction direction = Direction.Right;
 
-
+        private bool moveLeft = false;
+        private bool moveRight = false;
+        private bool moveUp = false;
+        private bool moveDown = false;
 
         private enum Direction { Up, Down, Left, Right }
 
 
         public Form1()
         {
+            
+
+
             InitializeComponent();
 
             gameTimer = new System.Windows.Forms.Timer();
             gameTimer.Interval = 100;
             gameTimer.Tick += gameTimer_Tick;
+
+            this.KeyPreview = true;
 
             InitializeGame();
         }
@@ -39,12 +47,12 @@ namespace Snake
             GenerateFood();
             score = 0;
 
-            gameTimer.Start();
-            playBox.Paint += playBox_Paint;
-            this.KeyDown += GameForm_KeyDown;
+            direction = Direction.Right; // Initialize direction
 
-
+            lblScore.Text = $"Score: {score}";
+            playBox.Invalidate(); // Refresh the playBox
         }
+
 
         private void GenerateFood()
         {
@@ -76,7 +84,6 @@ namespace Snake
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            // Move the snake
             Point head = snake[0];
             Point newHead = head;
 
@@ -88,7 +95,6 @@ namespace Snake
                 case Direction.Right: newHead.X++; break;
             }
 
-            // Check for collisions (walls or self)
             if (newHead.X < 0 || newHead.Y < 0 ||
                 newHead.X >= playBox.Width / 20 || newHead.Y >= playBox.Height / 20 ||
                 snake.Contains(newHead))
@@ -97,21 +103,22 @@ namespace Snake
                 return;
             }
 
-            snake.Insert(0, newHead); // Add new head to the front
+            snake.Insert(0, newHead);
 
-            // Check if snake ate the food
             if (newHead == food)
             {
                 score++;
+                lblScore.Text = $"Score: {score}";
                 GenerateFood();
             }
             else
             {
-                snake.RemoveAt(snake.Count - 1); // Remove the tail
+                snake.RemoveAt(snake.Count - 1);
             }
 
-            this.Invalidate(); // Refresh the form
+            playBox.Invalidate(); // Refresh playBox
         }
+
 
 
         private void GameOver()
@@ -141,10 +148,14 @@ namespace Snake
             }
         }
 
+
+
         private void btnStart_Click(object sender, EventArgs e)
         {
-            InitializeGame();
-            gameTimer.Start();
+            if (!gameTimer.Enabled) // Only start if the game is not running
+            {
+                gameTimer.Start();
+            }
         }
 
         private void btnPause_Click(object sender, EventArgs e)

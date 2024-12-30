@@ -47,15 +47,12 @@ namespace Snake
 
             gameMusicPlayer.settings.setMode("loop", true);
 
-            // Initialize Timer
             gameTimer = new System.Windows.Forms.Timer();
-            gameTimer.Interval = 150; // Slower starting speed
+            gameTimer.Interval = 150;
             gameTimer.Tick += gameTimer_Tick;
 
-            // Attach KeyDown
             this.KeyDown += Form1_KeyDown;
 
-            // Enable KeyPreview
             this.KeyPreview = true;
 
             InitializeGame();
@@ -74,18 +71,18 @@ namespace Snake
 
             gameTimer.Interval = 150;
 
-            direction = Direction.Right; // Initialize direction
+            direction = Direction.Right;
 
             lblScore.Text = $"Score: {score}";
             lblLevel.Text = $"Level: {level}";
-            playBox.Invalidate(); // Refresh the playBox
+            playBox.Invalidate();
         }
 
         private void GenerateFood()
         {
             Random random = new Random();
-            int gridWidth = playBox.Width / 20; // Number of columns
-            int gridHeight = playBox.Height / 20; // Number of rows
+            int gridWidth = playBox.Width / 20;
+            int gridHeight = playBox.Height / 20;
 
             food = new Point(random.Next(0, gridWidth), random.Next(0, gridHeight));
         }
@@ -95,13 +92,11 @@ namespace Snake
             Graphics g = e.Graphics;
             int cellSize = 20;
 
-            // Draw the snake
             foreach (Point segment in snake)
             {
                 g.FillRectangle(Brushes.Green, segment.X * cellSize, segment.Y * cellSize, cellSize, cellSize);
             }
 
-            // Draw the food
             g.FillRectangle(Brushes.Red, food.X * cellSize, food.Y * cellSize, cellSize, cellSize);
 
             lblScore.Text = $"Score: {score}";
@@ -112,7 +107,6 @@ namespace Snake
             Point head = snake[0];
             Point newHead = head;
 
-            // Move the snake based on the current direction
             switch (direction)
             {
                 case Direction.Up: newHead.Y--; break;
@@ -121,7 +115,6 @@ namespace Snake
                 case Direction.Right: newHead.X++; break;
             }
 
-            // Collision detection
             if (newHead.X < 0 || newHead.Y < 0 ||
                 newHead.X >= playBox.Width / 20 || newHead.Y >= playBox.Height / 20 ||
                 snake.Contains(newHead))
@@ -139,13 +132,11 @@ namespace Snake
                 appleSoundPlayer.controls.play();
                 GenerateFood();
 
-                // Increase level every 10 apples
                 if (score % 10 == 0)
                 {
                     level++;
                     lblLevel.Text = $"Level: {level}";
 
-                    // Increase speed by reducing interval (minimum of 50 ms)
                     if (gameTimer.Interval > 50)
                     {
                         gameTimer.Interval -= 10;
@@ -155,25 +146,25 @@ namespace Snake
             }
             else
             {
-                snake.RemoveAt(snake.Count - 1); // Remove the tail
+                snake.RemoveAt(snake.Count - 1);
             }
 
-            playBox.Invalidate(); // Refresh playBox
+            playBox.Invalidate();
         }
 
         private void GameOver()
         {
             gameTimer.Stop();
-            gameMusicPlayer.controls.stop(); // Stop background music
+            gameMusicPlayer.controls.stop();
             gameOverSoundPlayer.controls.play();
 
             MessageBox.Show($"Game Over! Your score: {score} Level: {level}", "Snake Game");
-            InitializeGame(); // Restart the game
+            InitializeGame();
         }
 
         private void Form1_KeyDown(object? sender, KeyEventArgs e)
         {
-            Console.WriteLine($"Key Pressed: {e.KeyCode}"); // Debug message
+            Console.WriteLine($"Key Pressed: {e.KeyCode}");
 
             switch (e.KeyCode)
             {
@@ -219,7 +210,7 @@ namespace Snake
         {
             startButtonSoundPlayer.controls.play();
 
-            this.Focus(); // Ensure the form has focus
+            this.Focus();
             if (!gameTimer.Enabled)
             {
                 gameMusicPlayer.controls.play();
